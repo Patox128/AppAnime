@@ -1,0 +1,31 @@
+{
+  "name": "appanime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon .",
+    "db:create:migration": "sequelize-cli migration:generate --config=./config/database.js",
+    "db:migrate": "sequelize-cli db:migrate --config=./config/database.js",
+    "db:migrate:status": "sequelize-cli db:migrate:status --config=./config/database.js",
+    "db:undo": "sequelize-cli db:migrate:undo --config=./config/database.js",
+    "db:undo:all": "sequelize-cli db:migrate:undo:all --config=./config/database.js"
+  },
+  "author": "Patricio Mora",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.2",
+    "jsonwebtoken": "^8.5.1",
+    "mariadb": "^2.5.4",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}
