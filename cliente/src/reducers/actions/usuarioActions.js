@@ -53,7 +53,10 @@ export const usuarioAutenticado = () => async (dispatch) => {
     });
   } catch (error) {
     console.log(error.response);
-    dispatch(loginError(error.response.data.msg));
+    dispatch({
+      type: LOGIN_ERROR,
+      payload: error.response.data.msg
+    });
   }
 };
 
@@ -61,28 +64,22 @@ export const iniciarSesion = (datos) => async (dispatch) => {
   try {
     const respuesta = await clienteAxios.post('/api/auth', datos);
     console.log(respuesta.data)
-    dispatch(loginExitoso(respuesta.data));
+    dispatch({
+      type: LOGIN_EXITOSO,
+      payload: respuesta.data
+    });
     dispatch(usuarioAutenticado());
   } catch (error) {
     console.log(error.response.data.msg);
-    dispatch(loginError(error.response.data.msg));
+    dispatch({
+      type: LOGIN_ERROR,
+      payload: error.response.data.msg
+    });
   }
 }
 
 export const logout = () => (dispatch) => {
-  dispatch(cerrarSesion());
+  dispatch({
+    type: CERRAR_SESION
+  });
 }
-
-const loginExitoso = (respuesta) => ({
-  type: LOGIN_EXITOSO,
-  payload: respuesta
-});
-
-const loginError = (error) => ({
-  type: LOGIN_ERROR,
-  payload: error,
-});
-
-const cerrarSesion = () => ({
-  type: CERRAR_SESION
-});
